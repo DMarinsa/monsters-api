@@ -6,7 +6,7 @@ import { Gender, IMonster, Title } from 'src/monsters/Domain/Monster';
 
 export type MonsterDocument = HydratedDocument<Monster>;
 
-@ObjectType()
+@ObjectType(Monster.name)
 @Schema()
 export class Monster implements IMonster {
   @Field(() => ID)

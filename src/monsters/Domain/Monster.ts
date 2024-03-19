@@ -14,6 +14,7 @@ export enum Title {
 }
 
 export interface IMonster {
+  _id: string;
   firstName: string;
   lastName: string;
   title: Title;

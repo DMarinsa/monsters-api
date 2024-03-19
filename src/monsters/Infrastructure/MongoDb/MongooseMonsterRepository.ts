@@ -11,19 +11,24 @@ export class MongooseMonsterRepository implements IMonsterRepository {
     @InjectModel(Monster.name)
     private readonly monsterModel: Model<MonsterDocument>,
   ) {}
-  getMonsters(): Promise<IMonster[]> {
-    throw new Error('Method not implemented.');
+
+  async getMonsters(): Promise<IMonster[]> {
+    return this.monsterModel.find();
   }
-  getMonsterById(id: string): Promise<IMonster> {
-    throw new Error('Method not implemented.');
+
+  async getMonsterById(id: string): Promise<IMonster> {
+    return this.monsterModel.findOne({ _id: id });
   }
-  createMonster(monster: IMonster): Promise<IMonster> {
-    throw new Error('Method not implemented.');
+
+  async createMonster(monster: IMonster): Promise<IMonster> {
+    return this.monsterModel.create(monster);
   }
-  updateMonster(monster: IMonster): Promise<IMonster> {
-    throw new Error('Method not implemented.');
+
+  async updateMonster(monster: IMonster): Promise<IMonster> {
+    return this.monsterModel.findOneAndUpdate({ _id: monster._id }, monster);
   }
-  deleteMonster(id: string): Promise<void> {
-    throw new Error('Method not implemented.');
+
+  async deleteMonster(id: string): Promise<void> {
+    return this.monsterModel.findOneAndDelete({ _id: id });
   }
 }
