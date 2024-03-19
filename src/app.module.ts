@@ -5,15 +5,11 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { MongooseModule } from '@nestjs/mongoose';
 import { join } from 'path';
-import {
-  Monster,
-  MonsterSchema,
-} from './monsters/Infrastructure/MongoDb/monster.schema';
 import { MonstersModule } from './monsters/monsters.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost:27017/monsters'),
+    MongooseModule.forRoot('mongodb://mongo:27017/monsters'),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       playground: true,
