@@ -29,3 +29,7 @@ export interface IMonster {
   createdAt: Date;
   updatedAt: Date;
 }
+
+export type IMonsterDto = Omit<IMonster, '_id' | 'createdAt' | 'updatedAt'> & {
+  _id?: string;
+};

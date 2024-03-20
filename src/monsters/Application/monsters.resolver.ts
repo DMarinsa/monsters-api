@@ -1,8 +1,9 @@
 import { Resolver, Query, Args, ID, Mutation } from '@nestjs/graphql';
-import { IMonster } from '../Domain/Monster';
+import { IMonster, IMonsterDto } from '../Domain/Monster';
 import { Monster } from '../Infrastructure/MongoDb/monster.schema';
 import { Injectable } from '@nestjs/common';
 import { MonstersService } from '../monsters.service';
+import { MonsterDto } from '../Infrastructure/GraphQL/monsterDTO.schema';
 
 @Injectable()
 @Resolver(() => Monster)
@@ -22,7 +23,9 @@ export class MonstersResolver {
   }
 
   @Mutation(() => Monster)
-  async createMonster(monster: IMonster): Promise<IMonster> {
+  async createMonster(
+    @Args('monster') monster: MonsterDto, // Cambia el tipo de dato aquí
+  ): Promise<Monster> {
     return this.monstersService.createMonster(monster);
   }
 
@@ -32,7 +35,7 @@ export class MonstersResolver {
   }
 
   @Mutation(() => Monster)
-  async deleteMonster(monster: IMonster): Promise<IMonster> {
-    return this.monstersService.createMonster(monster);
+  async deleteMonster(id: string): Promise<void> {
+    await this.monstersService.deleteMonster(id);
   }
 }

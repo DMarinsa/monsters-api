@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { IMonster } from './Domain/Monster';
+import { IMonster, IMonsterDto } from './Domain/Monster';
 import { MongooseMonsterRepository } from './Infrastructure/MongoDb/MongooseMonsterRepository';
 
 @Injectable()
@@ -16,11 +16,15 @@ export class MonstersService {
     return result;
   }
 
-  async createMonster(monster: IMonster): Promise<IMonster> {
+  async createMonster(monster: IMonsterDto): Promise<IMonster> {
     return this.monsterRepository.createMonster(monster);
   }
 
   async updateMonster(monster: IMonster): Promise<IMonster> {
     return this.monsterRepository.updateMonster(monster);
+  }
+
+  async deleteMonster(id: string): Promise<void> {
+    await this.monsterRepository.deleteMonster(id);
   }
 }

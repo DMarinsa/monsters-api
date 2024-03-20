@@ -1,5 +1,5 @@
 import { InjectModel } from '@nestjs/mongoose';
-import { IMonster } from 'src/monsters/Domain/Monster';
+import { IMonster, IMonsterDto } from 'src/monsters/Domain/Monster';
 import { IMonsterRepository } from 'src/monsters/Domain/MonsterRepository';
 import { Monster, MonsterDocument } from './monster.schema';
 import { Injectable } from '@nestjs/common';
@@ -20,7 +20,7 @@ export class MongooseMonsterRepository implements IMonsterRepository {
     return this.monsterModel.findOne({ _id: id });
   }
 
-  async createMonster(monster: IMonster): Promise<IMonster> {
+  async createMonster(monster: IMonsterDto): Promise<IMonster> {
     return this.monsterModel.create(monster);
   }
 

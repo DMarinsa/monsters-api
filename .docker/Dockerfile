@@ -16,5 +16,6 @@ COPY . .
 # Expón el puerto 3000 para la aplicación NestJS
 EXPOSE 3000
 
+RUN npm run build
 # Comando para ejecutar la aplicación
 CMD ["npm", "run", "start:prod"]

@@ -30,7 +30,22 @@ type Query {
 }
 
 type Mutation {
-  createMonster: Monster!
+  createMonster(monster: MonsterDto!): Monster!
   updateMonster: Monster!
   deleteMonster: Monster!
+}
+
+input MonsterDto {
+  _id: String
+  firstName: String!
+  lastName: String!
+  title: String!
+  nationalities: [String!]!
+  gender: String!
+  image: String!
+  goldBalance: Float!
+  speed: Float!
+  health: Float!
+  secretNotes: String!
+  password: String!
 }
