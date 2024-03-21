@@ -11,8 +11,15 @@ services:
       MONGO_DB_URI: mongodb://mongo:27017/monsters 
     depends_on:
       - mongo
+    networks:
+      - app_network
 
   mongo:
     image: mongo
     ports:
       - "27017:27017"
+    networks:
+    - app_network
+networks:
+  app_network:
+    driver: bridge
