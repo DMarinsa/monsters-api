@@ -10,10 +10,9 @@ import { MonsterDto } from '../Infrastructure/GraphQL/monsterDTO.schema';
 export class MonstersResolver {
   constructor(private readonly monstersService: MonstersService) {}
 
-  @Query(() => [Monster])
+  @Query(() => Monster)
   async monster(@Args('id', { type: () => ID }) id: string): Promise<IMonster> {
-    const result = await this.monstersService.getMonster(id);
-    return result;
+    return this.monstersService.getMonster(id);
   }
 
   @Query(() => [Monster])
@@ -23,19 +22,19 @@ export class MonstersResolver {
   }
 
   @Mutation(() => Monster)
-  async createMonster(
-    @Args('monster') monster: MonsterDto, // Cambia el tipo de dato aquí
-  ): Promise<Monster> {
+  async createMonster(@Args('monster') monster: MonsterDto): Promise<Monster> {
+    return await this.monstersService.createMonster(monster);
+  }
+
+  @Mutation(() => Monster)
+  async updateMonster(@Args('monster') monster: MonsterDto): Promise<IMonster> {
     return this.monstersService.createMonster(monster);
   }
 
   @Mutation(() => Monster)
-  async updateMonster(monster: IMonster): Promise<IMonster> {
-    return this.monstersService.createMonster(monster);
-  }
-
-  @Mutation(() => Monster)
-  async deleteMonster(id: string): Promise<void> {
+  async deleteMonster(
+    @Args('id', { type: () => ID }) id: string,
+  ): Promise<void> {
     await this.monstersService.deleteMonster(id);
   }
 }
