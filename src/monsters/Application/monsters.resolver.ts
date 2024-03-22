@@ -28,7 +28,7 @@ export class MonstersResolver {
 
   @Mutation(() => Monster)
   async updateMonster(@Args('monster') monster: MonsterDto): Promise<IMonster> {
-    return this.monstersService.createMonster(monster);
+    return this.monstersService.updateMonster(monster);
   }
 
   @Mutation(() => Monster)

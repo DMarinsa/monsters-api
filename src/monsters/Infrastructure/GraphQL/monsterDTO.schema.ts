@@ -1,6 +1,6 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { Country } from 'src/lib/constants/countries';
-import { Gender, IMonsterDto, Title } from 'src/monsters/Domain/Monster';
+import { Country } from '../../../lib/constants/countries';
+import { Gender, IMonsterDto, Title } from '../../../monsters/Domain/Monster';
 
 @InputType(MonsterDto.name)
 export class MonsterDto implements IMonsterDto {

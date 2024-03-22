@@ -20,7 +20,7 @@ export class MonstersService {
     return this.monsterRepository.createMonster(monster);
   }
 
-  async updateMonster(monster: IMonster): Promise<IMonster> {
+  async updateMonster(monster: IMonsterDto): Promise<IMonster> {
     return this.monsterRepository.updateMonster(monster);
   }
 

@@ -1,4 +1,4 @@
-import { Country } from 'src/lib/constants/countries';
+import { Country } from '../../lib/constants/countries';
 
 export enum Gender {
   Male = 'male',
