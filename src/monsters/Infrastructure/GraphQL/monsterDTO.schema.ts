@@ -1,5 +1,5 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { Country } from '../../../lib/constants/countries';
+import { Country } from '../../../lib/Domain/constants/countries';
 import { Gender, IMonsterDto, Title } from '../../../monsters/Domain/Monster';
 
 @InputType(MonsterDto.name)

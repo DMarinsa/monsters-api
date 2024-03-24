@@ -1,7 +1,7 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
-import { Country } from '../../../lib/constants/countries';
+import { Country } from '../../../lib/Domain/constants/countries';
 import { Gender, IMonster, Title } from '../../../monsters/Domain/Monster';
 
 export type MonsterDocument = HydratedDocument<Monster>;
