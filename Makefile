@@ -12,3 +12,6 @@ local-run: local-build
 	@npm run start:dev
 test:
 	@npm run test
+install:
+	@rm -rf node_modules
+	@npm install
