@@ -1,10 +1,5 @@
 // mutation.guard.ts
-import {
-  Injectable,
-  CanActivate,
-  ExecutionContext,
-  UnauthorizedException,
-} from '@nestjs/common';
+import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
 import { GqlExecutionContext } from '@nestjs/graphql';
 import { Roles } from '../../../Domain/constants/roles';
 
@@ -16,8 +11,8 @@ export class AuthGuard implements CanActivate {
       req: { user },
     } = ctx.getContext();
 
-    if (user.role !== Roles.Admin) {
-      throw new UnauthorizedException();
+    if (user?.role !== Roles.Admin) {
+      return false;
     }
 
     return true;
