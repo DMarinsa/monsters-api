@@ -2,13 +2,13 @@
 import { Module } from '@nestjs/common';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
-import { JwtStrategy } from './strategies/jwt.strategy';
+import { JwtStrategy, SECRET_KEY } from './strategies/jwt.strategy';
 
 @Module({
   imports: [
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.register({
-      secret: 'monsters-api',
+      secret: SECRET_KEY,
       signOptions: { expiresIn: '1d' },
     }),
   ],
