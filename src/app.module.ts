@@ -9,6 +9,7 @@ import { MonstersModule } from './monsters/monsters.module';
 import { ConfigModule } from '@nestjs/config';
 import configuration from 'config/configuration';
 import { AuthModule } from './lib/Infrastructure/Auth/auth.module';
+import { AuthGuard } from './lib/Infrastructure/Auth/guards/auth.guard';
 
 @Module({
   imports: [
@@ -31,6 +32,6 @@ import { AuthModule } from './lib/Infrastructure/Auth/auth.module';
     MonstersModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, AuthGuard],
 })
 export class AppModule {}
