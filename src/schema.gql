@@ -25,14 +25,14 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 scalar DateTime
 
 type Query {
-  monster(id: ID!): [Monster!]!
+  monster(id: ID!): Monster!
   monsters: [Monster!]!
 }
 
 type Mutation {
   createMonster(monster: MonsterDto!): Monster!
-  updateMonster: Monster!
-  deleteMonster: Monster!
+  updateMonster(monster: MonsterDto!): Monster!
+  deleteMonster(id: ID!): Monster!
 }
 
 input MonsterDto {
