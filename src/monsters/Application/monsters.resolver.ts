@@ -1,9 +1,10 @@
 import { Resolver, Query, Args, ID, Mutation } from '@nestjs/graphql';
-import { IMonster, IMonsterDto } from '../Domain/Monster';
+import { IMonster } from '../Domain/Monster';
 import { Monster } from '../Infrastructure/MongoDb/monster.schema';
-import { Injectable } from '@nestjs/common';
+import { Injectable, UseGuards } from '@nestjs/common';
 import { MonstersService } from '../monsters.service';
 import { MonsterDto } from '../Infrastructure/GraphQL/monsterDTO.schema';
+import { AuthGuard } from '@nestjs/passport';
 
 @Injectable()
 @Resolver(() => Monster)
@@ -21,16 +22,19 @@ export class MonstersResolver {
     return result;
   }
 
+  @UseGuards(AuthGuard)
   @Mutation(() => Monster)
   async createMonster(@Args('monster') monster: MonsterDto): Promise<Monster> {
     return await this.monstersService.createMonster(monster);
   }
 
+  @UseGuards(AuthGuard)
   @Mutation(() => Monster)
   async updateMonster(@Args('monster') monster: MonsterDto): Promise<IMonster> {
     return this.monstersService.updateMonster(monster);
   }
 
+  @UseGuards(AuthGuard)
   @Mutation(() => Monster)
   async deleteMonster(
     @Args('id', { type: () => ID }) id: string,

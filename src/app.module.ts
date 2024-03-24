@@ -8,6 +8,7 @@ import { join } from 'path';
 import { MonstersModule } from './monsters/monsters.module';
 import { ConfigModule } from '@nestjs/config';
 import configuration from 'config/configuration';
+import { AuthModule } from './lib/Infrastructure/Auth/auth.module';
 
 @Module({
   imports: [
@@ -24,7 +25,9 @@ import configuration from 'config/configuration';
       driver: ApolloDriver,
       playground: true,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      context: ({ req }) => ({ req }),
     }),
+    AuthModule,
     MonstersModule,
   ],
   controllers: [AppController],
