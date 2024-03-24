@@ -7,7 +7,7 @@ import {
 } from '../Infrastructure/MongoDb/monster.schema';
 import { MonstersService } from '../monsters.service';
 import { Gender, IMonster, Title } from '../Domain/Monster';
-import { Country } from '../../lib/constants/countries';
+import { Country } from '../../lib/Domain/constants/countries';
 import { MongooseModule } from '@nestjs/mongoose';
 import { MongooseMonsterRepository } from '../Infrastructure/MongoDb/MongooseMonsterRepository';
 
