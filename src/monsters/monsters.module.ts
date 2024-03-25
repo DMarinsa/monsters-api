@@ -7,6 +7,8 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { MonstersResolver } from './Application/monsters.resolver';
 import { MongooseMonsterRepository } from './Infrastructure/MongoDb/MongooseMonsterRepository';
 import { MonstersService } from './monsters.service';
+import { JwtModule } from '@nestjs/jwt';
+import { SECRET_KEY } from 'src/lib/Infrastructure/Auth/guards/auth.guard';
 
 @Module({
   imports: [
@@ -16,6 +18,10 @@ import { MonstersService } from './monsters.service';
         schema: MonsterSchema,
       },
     ]),
+    JwtModule.register({
+      secret: SECRET_KEY,
+      signOptions: { expiresIn: '1d' },
+    }),
   ],
   providers: [MonstersResolver, MonstersService, MongooseMonsterRepository],
 })

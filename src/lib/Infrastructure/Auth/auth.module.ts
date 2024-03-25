@@ -1,18 +1,16 @@
 // auth.module.ts
-import { Module } from '@nestjs/common';
-import { PassportModule } from '@nestjs/passport';
-import { JwtModule } from '@nestjs/jwt';
-import { JwtStrategy, SECRET_KEY } from './strategies/jwt.strategy';
+import { Logger, Module } from '@nestjs/common';
+import { JwtModule, JwtService } from '@nestjs/jwt';
+import { SECRET_KEY } from './guards/auth.guard';
 
 @Module({
   imports: [
-    PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.register({
       secret: SECRET_KEY,
       signOptions: { expiresIn: '1d' },
     }),
   ],
-  providers: [JwtStrategy],
-  exports: [PassportModule, JwtModule],
+  providers: [Logger, JwtService],
+  exports: [JwtModule],
 })
 export class AuthModule {}

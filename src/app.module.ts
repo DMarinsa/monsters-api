@@ -19,7 +19,7 @@ import { AuthGuard } from './lib/Infrastructure/Auth/guards/auth.guard';
     }),
     MongooseModule.forRootAsync({
       useFactory: () => ({
-        uri: process.env.MONGO_DB_URI || 'mongodb://localhost:27017/monsters',
+        uri: process.env.MONGO_DB_URI,
       }),
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
@@ -34,4 +34,8 @@ import { AuthGuard } from './lib/Infrastructure/Auth/guards/auth.guard';
   controllers: [AppController],
   providers: [AppService, AuthGuard],
 })
-export class AppModule {}
+export class AppModule {
+  constructor() {
+    console.log(process.env.MONGO_DB_URI);
+  }
+}
